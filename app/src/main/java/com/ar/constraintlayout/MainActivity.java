@@ -1,5 +1,6 @@
 package com.ar.constraintlayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,17 +9,28 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Toolbar toolbar;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -26,6 +38,26 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    @OnClick(R.id.relativeLayout)
+    protected void goToRelativeLayoutActivity(){
+        startActivity(new Intent(getApplicationContext(), RelativeLayoutActivity.class));
+    }
+
+    @OnClick(R.id.linearLayout)
+    protected void goToLinearLayoutActivity(){
+        startActivity(new Intent(getApplicationContext(), LinearLayoutActivity.class));
+    }
+
+    @OnClick(R.id.frameLayout)
+    protected void goToFrameLayoutActivity(){
+        startActivity(new Intent(getApplicationContext(), FrameLayoutActivity.class));
+    }
+
+    @OnClick(R.id.constraintLayout)
+    protected void goToConstraintLayoutActivity(){
+        startActivity(new Intent(getApplicationContext(), ConstraintLayoutActivity.class));
     }
 
     @Override
